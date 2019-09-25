@@ -7,6 +7,6 @@ applications:
   - route: pal-tracker-tarun-backlog.cfapps.io
   path: Applications/BacklogServer/bin/Release/netcoreapp2.1/publish
   env:
-    REGISTRATION_SERVER_ENDPOINT: http://FILL_ME_IN/
+    REGISTRATION_SERVER_ENDPOINT: http://pal-tracker-tarun-registeration.cfapps.io/
   services:
   - tracker-backlog-database
