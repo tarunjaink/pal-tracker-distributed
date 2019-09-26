@@ -48,8 +48,7 @@ namespace BacklogServer
             services.AddDiscoveryClient(Configuration);
             services.AddDbContext<StoryContext>(options => options.UseMySql(Configuration));
             services.AddScoped<IStoryDataGateway, StoryDataGateway>();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddCloudFoundryJwtBearer(Configuration);
+  
             services.AddSingleton<IProjectClient>(sp =>
             {
                 var handler = new DiscoveryHttpClientHandler(sp.GetService<IDiscoveryClient>());
@@ -65,9 +64,10 @@ namespace BacklogServer
                      () => contextAccessor.HttpContext.GetTokenAsync("access_token")
                  );
             });
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                 .AddCloudFoundryJwtBearer(Configuration);
+
             services.AddHystrixMetricsStream(Configuration);
+                      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddCloudFoundryJwtBearer(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

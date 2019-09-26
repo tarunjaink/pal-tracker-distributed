@@ -48,8 +48,7 @@ namespace TimesheetsServer
             services.AddDiscoveryClient(Configuration);
             services.AddDbContext<TimeEntryContext>(options => options.UseMySql(Configuration));
             services.AddScoped<ITimeEntryDataGateway, TimeEntryDataGateway>();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddCloudFoundryJwtBearer(Configuration);
+            
             services.AddSingleton<IProjectClient>(sp =>
             {
                 var handler = new DiscoveryHttpClientHandler(sp.GetService<IDiscoveryClient>());
@@ -66,6 +65,8 @@ namespace TimesheetsServer
                  );
             });
             services.AddHystrixMetricsStream(Configuration);
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddCloudFoundryJwtBearer(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -49,8 +49,6 @@ namespace AllocationsServer
             services.AddDiscoveryClient(Configuration);
             services.AddDbContext<AllocationContext>(options => options.UseMySql(Configuration));
             services.AddScoped<IAllocationDataGateway, AllocationDataGateway>();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddCloudFoundryJwtBearer(Configuration);
             services.AddSingleton<IProjectClient>(sp =>
             {
                 var handler = new DiscoveryHttpClientHandler(sp.GetService<IDiscoveryClient>());
@@ -68,6 +66,8 @@ namespace AllocationsServer
                  );
             });
             services.AddHystrixMetricsStream(Configuration);
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddCloudFoundryJwtBearer(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
