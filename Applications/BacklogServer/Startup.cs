@@ -65,6 +65,8 @@ namespace BacklogServer
                      () => contextAccessor.HttpContext.GetTokenAsync("access_token")
                  );
             });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                 .AddCloudFoundryJwtBearer(Configuration);
             services.AddHystrixMetricsStream(Configuration);
         }
 
