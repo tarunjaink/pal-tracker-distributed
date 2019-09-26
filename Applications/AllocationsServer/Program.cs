@@ -18,8 +18,8 @@ namespace AllocationsServer
         public static IWebHostBuilder WebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 // https://github.com/aspnet/KestrelHttpServer/issues/1998#issuecomment-322922164
+                .UseCloudFoundryHosting()
                 .UseConfiguration(new ConfigurationBuilder().AddCommandLine(args).Build())
-                UseCloudFoundryHosting()
                 .AddCloudFoundry()
                 .UseStartup<Startup>();
     }
