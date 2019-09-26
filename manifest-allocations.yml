@@ -6,7 +6,6 @@ applications:
   routes:
   - route: pal-tracker-tarun-allocations.cfapps.io
   path: Applications/AllocationsServer/bin/Release/netcoreapp2.1/publish
-  env:
-    REGISTRATION_SERVER_ENDPOINT: http://pal-tracker-tarun-registeration.cfapps.io/
   services:
   - tracker-allocations-database
+  - tracker-service-registry

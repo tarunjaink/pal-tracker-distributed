@@ -6,7 +6,6 @@ applications:
   routes:
   - route: pal-tracker-tarun-timesheets.cfapps.io
   path: Applications/TimesheetsServer/bin/Release/netcoreapp2.1/publish
-  env:
-    REGISTRATION_SERVER_ENDPOINT: http://pal-tracker-tarun-registeration.cfapps.io/
   services:
   - tracker-timesheets-database
+  - tracker-service-registry
